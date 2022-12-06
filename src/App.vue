@@ -1,6 +1,8 @@
 
 <template>
   <div class="App">
+    <!-- $route.fullPath!=='/city' -->
+    <!--  v-if="!$route.meta.showTabbar" -->
     <tabbar></tabbar>
     <router-view></router-view>
   </div>

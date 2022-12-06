@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.2.1",
     "element-plus": "^2.2.26",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.26",

@@ -1,4 +1,6 @@
 import axios from "axios";
+import {BASE_URL,timeout} from './config'
+
 class VueRequest {
 
   constructor(baseURL,timeout=10000){
@@ -27,7 +29,7 @@ class VueRequest {
   }
 }
 
-const instance = new VueRequest("http://123.207.32.32:8000")
-const instance1 = new VueRequest("http://123.207.32.32:9001")
+const instance = new VueRequest(BASE_URL,timeout)
+// const instance1 = new VueRequest("http://123.207.32.32:9001")
 
 export default instance

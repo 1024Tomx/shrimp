@@ -22,6 +22,13 @@ const router = createRouter({
       {
         path:'/order',
         component:()=>import("@/pages/order/order.vue")
+      },
+      {
+        path:'/city',
+        component:()=>import("@/pages/city/city.vue"),
+        meta:{
+          showTabbar: true
+        }
       }
   ]
 })
