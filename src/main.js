@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
+import pinia from './stores'
 // import ElementPlus from 'element-plus'
 // import 'element-plus/dist/index.css'
 
@@ -10,11 +10,19 @@ import router from './router'
 import "normalize.css"
 import "./assets/css/index.css"
 
-const app = createApp(App)
+// 导入vant
 
-app.use(createPinia())
+import { IndexBar, IndexAnchor,Cell } from 'vant';
+import 'vant/lib/index.css';
+
+const app = createApp(App)
+app.use(IndexBar)
+app.use(IndexAnchor)
+app.use(Cell)
+app.use(pinia)
 app.use(router)
 // app.use(ElementPlus)
+
 app.mount('#app')
 
 
