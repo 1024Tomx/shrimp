@@ -12,19 +12,28 @@ import "./assets/css/index.css"
 
 // 导入vant
 
-import { IndexBar, IndexAnchor,Cell } from 'vant';
+import vant from 'vant';
 import 'vant/lib/index.css';
 
 const app = createApp(App)
-app.use(IndexBar)
-app.use(IndexAnchor)
-app.use(Cell)
 app.use(pinia)
 app.use(router)
+app.use(vant)
 // app.use(ElementPlus)
 
 app.mount('#app')
 
+
+/**
+ * git init
+ * git add .
+ * git commit -m "备份"
+ * git remote -v  查看关联
+ * git remote add origin ""
+ * git push --set-upstream "当前git仓库的地址" master
+ * git push
+ * 
+ */
 
 /**
  * 生成ssh

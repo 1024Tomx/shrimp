@@ -1,5 +1,6 @@
 :root{
   --color-all:#ff9954;
+  --line-color: #faf8f9;
 }
 
 body{
@@ -14,4 +15,8 @@ body{
   height: 100vh;
   background-color: #fff;
   overflow-y: auto;
+}
+
+.bottom-gray-line{
+  border-bottom: 1px solid var(--line-color);
 }
