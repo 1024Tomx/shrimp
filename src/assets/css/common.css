@@ -1,6 +1,7 @@
 :root{
   --color-all:#ff9954;
   --line-color: #faf8f9;
+  --theme-linear-gradient: linear-gradient(90deg, #fa8c1d, #fcaf3f);
 }
 
 body{

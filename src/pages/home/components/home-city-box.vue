@@ -44,6 +44,9 @@
         </span>
       </template>
     </div>
+    <div class="section startSearch">
+      <div @click="goSearch" class="btn">按钮</div>
+    </div>
   </div>
 </template>
 
@@ -55,13 +58,12 @@
   import { ref } from 'vue';
   import useHomeStore from "@/stores/module/home"
 
+  // 获取路由
+  const router = useRouter()
   // 获取状态管理
   const useHome = useHomeStore()
-  // 获取热门城市的建议
-  useHome.getHotSuggestsAction()
-
-  const router = useRouter()
   const useCity = useCityStore()
+  // 获取城市名称
   const {city} =storeToRefs(useCity)
   const goCity = () =>{
     router.push("/city")
@@ -81,7 +83,6 @@
   }
 
   // 获取当前日期
-  
   // const endDate = new Date(startDate.getTime() + 60*60*24*1000) 日期的计算逻辑
   const startDate = new Date()
   const newDate = new Date()
@@ -108,6 +109,18 @@
   
   // 热门城市数据
   const { hotSuggests } = storeToRefs(useHome)
+
+  // 跳转到搜索页面
+  const goSearch = ()=>{
+    router.push({
+      path:'/search',
+      query:{
+        showStartDate:showStartDate.value,
+        showEndDate:showEndDate.value,
+        city:JSON.stringify(city.value)
+      }
+    })
+  }
 </script>
 
 <style scoped>
@@ -183,11 +196,25 @@
 /* 热门推荐 */
 .hot-suggest {
   margin: 10px 0;
+  height: auto;
 }
 .tag {
   font-size: 12px;
   padding: 4px 8px;
   margin: 3px;
   border-radius: 14px;
+}
+/* 搜索按钮 */
+.btn {
+  width: 342px;
+  height: 38px;
+  max-height: 50px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 38px;
+  text-align: center;
+  border-radius: 20px;
+  color: #fff;
+  background-image:var(--theme-linear-gradient);
 }
 </style>
