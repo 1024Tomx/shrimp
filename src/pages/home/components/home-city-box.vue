@@ -45,7 +45,7 @@
       </template>
     </div>
     <div class="section startSearch">
-      <div @click="goSearch" class="btn">按钮</div>
+      <div @click="goSearch" class="btn">开始搜索</div>
     </div>
   </div>
 </template>
@@ -55,14 +55,16 @@
   import { storeToRefs } from 'pinia';
   import { useRouter } from 'vue-router';
   import { formatDate,getDiffDate } from "@/utils/format-date"
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
   import useHomeStore from "@/stores/module/home"
+  import useMainStore from '@/stores/module/main';
 
   // 获取路由
   const router = useRouter()
   // 获取状态管理
   const useHome = useHomeStore()
   const useCity = useCityStore()
+  const useMain = useMainStore()
   // 获取城市名称
   const {city} =storeToRefs(useCity)
   const goCity = () =>{
@@ -84,14 +86,13 @@
 
   // 获取当前日期
   // const endDate = new Date(startDate.getTime() + 60*60*24*1000) 日期的计算逻辑
-  const startDate = new Date()
-  const newDate = new Date()
-  const endDate = new Date(newDate.setDate(newDate.getDate()+1))
+  
   // 展示的开始结束日期
-  const showStartDate = ref(formatDate(startDate))
-  const showEndDate = ref(formatDate(endDate))
+  const {startDate,endDate} = storeToRefs(useMain)
+  const showStartDate = computed(()=>formatDate(startDate.value)) 
+  const showEndDate = computed(()=>formatDate(endDate.value)) 
   // 获取入住总天数
-  const stayCount = ref(getDiffDate(startDate,endDate))
+  const stayCount = ref(getDiffDate(startDate.value,endDate.value))
 
   // 展示日期组件
   const showDateSelect = ref(false)
@@ -99,8 +100,8 @@
   const onConfirm = (value)=>{
     const selStartDate = value[0]
     const selEndDate = value[1]
-    showStartDate.value = formatDate(selStartDate)
-    showEndDate.value = formatDate(selEndDate)
+    useMain.startDate = selStartDate
+    useMain.endDate = selEndDate
     // 计算入住天数
     stayCount.value = getDiffDate(selStartDate,selEndDate)
 

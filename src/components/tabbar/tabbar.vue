@@ -1,15 +1,13 @@
 <template>
   <el-menu
-    :default-active="currentIndex"
+    :default-active="$route.path"
     active-text-color="#ff9954"
     class="tabbar"
-    router
-    @select="handleSelect"
-    >
+    router>
   <template v-for="(item,index) in tabbarData" :key="index+''">
-    <el-menu-item class="tabbar-item" :route="item.path" :index="index+''">
+    <el-menu-item class="tabbar-item" :index="item.path">
       <template #title>
-        <img v-if="(currentIndex != index)" class="img" :src="getImageURL(item.image)" alt="">
+        <img v-if="($route.path != item.path)" class="img" :src="getImageURL(item.image)" alt="">
         <img v-else class="img" :src="getImageURL(item.activeImage)" alt="">
         <span class="text">{{item.text}}</span>
       </template>
@@ -22,18 +20,21 @@
 <script setup>
   import tabbarData from "@/utils/data/tabbar"
   import getImageURL from '@/utils/getImage'
-  import { ref } from "vue";
-
-  const currentIndex = ref("0")
-  const handleSelect = (key) => {
-    currentIndex.value = key
-  }
+  // import { watch } from "vue";
+  // import { useRoute } from "vue-router";
+  // 获取索引下标
+  // const route = useRoute()
+  // watch(route,(n)=>{
+  //   const index = tabbarData.findIndex(item=>item.path===n.path)
+  //   if(index < 0)return
+  // })
+  
 </script>
 
 <style scoped>
   .tabbar{
     position: fixed;
-    bottom: 0;
+    bottom: -4px;
     left: 0;
     right: 0;
     height: 50px;
@@ -48,6 +49,7 @@
     justify-content: center;
     line-height: 20px;
     align-items: center;
+    padding-bottom: 6px;
   }
   .img{
     width: 24px;

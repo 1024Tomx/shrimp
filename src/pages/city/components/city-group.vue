@@ -36,7 +36,6 @@
       default:{}
     }
   })
-
   const indexList = computed(()=>{
     return ['#',...props.cities.cities.map(n=>n.group)]
   })
